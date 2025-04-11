@@ -1,0 +1,30 @@
+databases:
+  mysql:
+    enabled: true
+    host: 10.10.10.113
+    port: 27878
+    user: root
+    password: "zzkk.9527"
+    database: test
+rabbitmq:
+    enabled: true
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtualHost: /
+    exchange: cm_platform
+    queue: cm_platform
+    routingKey: cm_platform
+    consumerTag: cm_platform
+redis:
+  standalone:
+    enabled: true
+    host: 10.10.10.113
+    port: 6379
+    password:
+
+kube-visionary:
+  cm_platform:
+    port: 12833
+    host: 0.0.0.0
