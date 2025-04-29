@@ -28,3 +28,4 @@ kube-visionary:
   cm_platform:
     port: 12833
     host: 0.0.0.0
+  kubeConfig: "E:\\StudyCode\\go_code\\cm_platform\\cmd\\configPath\\config"

@@ -16,6 +16,7 @@ import (
 
 type UserService struct {
 	repo        interfaces.UserRepository
+	us          interfaces.UserService
 	redisClient *redis.Client
 }
 

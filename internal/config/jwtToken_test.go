@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"log"
 	"testing"
 )
@@ -34,4 +35,15 @@ func TestVerifyToken(t *testing.T) {
 	}
 	log.Println(verifyToken)
 
+}
+
+func TestViperLoadConfig(t *testing.T) {
+	configFile := "E:\\StudyCode\\go_code\\cm_platform\\cmd\\configPath\\cm_platform.yaml"
+	config, err := ViperLoadConfig(configFile)
+	if err != nil {
+		t.Error("err: ", err)
+	}
+
+	f := config.KubeVisionary.KubeConfig
+	fmt.Println(f)
 }

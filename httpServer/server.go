@@ -15,11 +15,20 @@ func SetupRoutes(r *gin.Engine, userService *service.UserService) {
 		api.POST("/login", authHandler.LoginAPI)
 		api.GET("/users", authHandler.GetAllUsersAPI)
 
-		v1 := api.Group("/v1/cluster")
+		k8s := api.Group("/v1/k8s")
 		{
-			v1.GET("/information", GetClusterInfoHandler)
-			v1.GET("/nodes", GetNodeInfoHandler)
+			k8s.GET("/information", GetClusterInfoHandler)
+			k8s.GET("/nodes", GetNodeInfoHandler)
+
+			create := k8s.Group("/deployment")
+			{
+				create.POST("/create", CreateDeploymentHandler)
+				create.POST("/create1", HandlerCreateDeployment)
+				create.DELETE("/delete", DeleteDeploymentHandler)
+			}
+
 		}
+
 	}
 }
 

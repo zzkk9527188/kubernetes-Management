@@ -14,8 +14,10 @@ import (
 )
 
 func main() {
-	configPath := "/configPath/cm_platform.yaml"
-	cfg, err := config.LoadConfig(configPath)
+
+	//fmt.Println(os.Getwd())
+	ConfigPath := "E:\\StudyCode\\go_code\\cm_platform\\cmd\\configPath\\cm_platform.yaml"
+	cfg, err := config.ViperLoadConfig(ConfigPath)
 	if err != nil {
 		log.Fatalf("Failed to load configuration: %v", err)
 	}

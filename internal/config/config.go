@@ -3,8 +3,6 @@ package config
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	"log"
-	"os"
 )
 
 type Config struct {
@@ -47,20 +45,14 @@ type Config struct {
 			Port int    `mapstructure:"port"`
 			Host string `mapstructure:"host"`
 		} `mapstructure:"cm_platform"`
+		KubeConfig string `mapstructure:"kubeConfig"`
 	} `mapstructure:"kube-visionary"`
 }
 
 // LoadConfig 使用 Viper 加载配置文件并返回 Config 结构体
-func LoadConfig(configFile string) (*Config, error) {
+func ViperLoadConfig(configFile string) (*Config, error) {
 	v := viper.New()
-	//设置配置文件路径和类型
-	dir, err := os.Getwd()
-	if err != nil {
-		log.Println("获取当前目录失败:", err)
-		return nil, err
-	}
-	configPath := dir + configFile
-	v.SetConfigFile(configPath)
+	v.SetConfigFile(configFile)
 	v.SetConfigType("yaml")
 
 	// 读取配置文件
@@ -69,7 +61,7 @@ func LoadConfig(configFile string) (*Config, error) {
 	}
 	// 将配置映射到结构体
 	var cfg Config
-	err = v.Unmarshal(&cfg)
+	err := v.Unmarshal(&cfg)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshal config: %w", err)
 	}
